@@ -1,11 +1,11 @@
 {
   "name": "dessertation-blockchain-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/dessertation-blockchain-ui",
+  "sourceRoot": "apps/dessertation-blockchain-ui/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/next:build",
+      "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
@@ -13,40 +13,51 @@
       },
       "configurations": {
         "development": {
-          "outputPath": "apps/dessertation-blockchain-ui"
-        },
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "dessertation-blockchain-ui:build",
-        "dev": true
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "dessertation-blockchain-ui:build:development",
-          "dev": true
+          "mode": "development"
         },
         "production": {
-          "buildTarget": "dessertation-blockchain-ui:build:production",
-          "dev": false
+          "mode": "production"
         }
       }
     },
-    "export": {
-      "executor": "@nx/next:export",
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "dessertation-blockchain-ui:build:production"
+        "buildTarget": "apps/dessertation-blockchain-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "apps/dessertation-blockchain-ui:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "apps/dessertation-blockchain-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "apps/dessertation-blockchain-ui:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "apps/dessertation-blockchain-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "apps/dessertation-blockchain-ui:build:production"
+        }
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "jestConfig": "apps/dessertation-blockchain-ui/jest.config.ts"
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/dessertation-blockchain-ui"
       }
     },
     "lint": {

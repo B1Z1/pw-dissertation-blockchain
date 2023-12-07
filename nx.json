@@ -30,6 +30,10 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/vite:test": {
+      "cache": true,
+      "inputs": ["default", "^production"]
     }
   },
   "namedInputs": {
@@ -49,7 +53,17 @@
   "generators": {
     "@nx/react": {
       "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "bundler": "vite",
         "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
       }
     },
     "@nx/next": {
@@ -57,6 +71,9 @@
         "style": "styled-components",
         "linter": "eslint"
       }
+    },
+    "@nx/workspace:move": {
+      "projectNameAndRootFormat": "as-provided"
     }
   }
 }
