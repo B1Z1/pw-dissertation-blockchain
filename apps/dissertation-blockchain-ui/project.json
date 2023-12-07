@@ -1,7 +1,7 @@
 {
-  "name": "dessertation-blockchain-ui",
+  "name": "dissertation-blockchain-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/dessertation-blockchain-ui/src",
+  "sourceRoot": "apps/dissertation-blockchain-ui/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/dessertation-blockchain-ui"
+        "outputPath": "dist/apps/dissertation-blockchain-ui"
       },
       "configurations": {
         "development": {
@@ -24,15 +24,15 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "apps/dessertation-blockchain-ui:build"
+        "buildTarget": "dissertation-blockchain-ui:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "apps/dessertation-blockchain-ui:build:development",
+          "buildTarget": "dissertation-blockchain-ui:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "apps/dessertation-blockchain-ui:build:production",
+          "buildTarget": "dissertation-blockchain-ui:build:production",
           "hmr": false
         }
       }
@@ -41,14 +41,14 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "apps/dessertation-blockchain-ui:build"
+        "buildTarget": "dissertation-blockchain-ui:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "apps/dessertation-blockchain-ui:build:development"
+          "buildTarget": "dissertation-blockchain-ui:build:development"
         },
         "production": {
-          "buildTarget": "apps/dessertation-blockchain-ui:build:production"
+          "buildTarget": "dissertation-blockchain-ui:build:production"
         }
       }
     },
@@ -57,7 +57,7 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/dessertation-blockchain-ui"
+        "reportsDirectory": "../../coverage/apps/dissertation-blockchain-ui"
       }
     },
     "lint": {
@@ -65,7 +65,7 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "apps/dessertation-blockchain-ui/**/*.{ts,tsx,js,jsx}"
+          "apps/dissertation-blockchain-ui/**/*.{ts,tsx,js,jsx}"
         ]
       }
     }
