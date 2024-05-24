@@ -1,0 +1,56 @@
+{
+  "name": "dissertation-blockchain",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/dissertation-blockchain/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/dissertation-blockchain",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/dissertation-blockchain/src/main.ts",
+        "tsConfig": "apps/dissertation-blockchain/tsconfig.app.json",
+        "assets": ["apps/dissertation-blockchain/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dissertation-blockchain:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "dissertation-blockchain:build:development"
+        },
+        "production": {
+          "buildTarget": "dissertation-blockchain:build:production"
+        }
+      }
+    }
+  }
+}
