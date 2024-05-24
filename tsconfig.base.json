@@ -15,14 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@pw-dissertation-blockchain/features/diplomas": [
+        "libs/features/diplomas/src/index.ts"
+      ],
       "@pw-dissertation-blockchain/ui-kit/ui": ["libs/ui-kit/ui/src/index.ts"],
       "@pw-dissertation-blockchain/ui-kit/ui/*": ["libs/ui-kit/ui/src/*"],
       "@pw-dissertation-blockchain/ui-kit/util": [
         "libs/ui-kit/util/src/index.ts"
       ],
-      "@pw-dissertation-blockchain/ui-kit/util/*": [
-        "libs/ui-kit/util/src/*"
-      ]
+      "@pw-dissertation-blockchain/ui-kit/util/*": ["libs/ui-kit/util/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

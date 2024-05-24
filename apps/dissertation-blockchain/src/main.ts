@@ -4,16 +4,22 @@ import * as process from 'node:process';
 import getPort from 'get-port';
 import express from 'express';
 import { BlockchainDTOConverter } from './dto/BlockchainDTOConverter';
-import { DiplomaDTO } from './dto/DiplomaDTO';
 import { Block, BlockHeader } from './blockchain/Block';
-
+import { DiplomaConverter, DiplomaDTO } from '@pw-dissertation-blockchain/features/diplomas';
+import cors from 'cors';
 
 async function initialize(): Promise<void> {
 	const p2pPort = await getPort({
-		port: [Number(process.env.P2P_PORT) || 5001, ...getPort.makeRange(5002, 5100)]
+		port: [
+			Number(process.env.P2P_PORT) || 5001,
+			...getPort.makeRange(5002, 5100),
+		],
 	});
 	const httpPort = await getPort({
-		port: [Number(process.env.HTTP_PORT) || 3001, ...getPort.makeRange(3002, 3100)]
+		port: [
+			Number(process.env.HTTP_PORT) || 3001,
+			...getPort.makeRange(3002, 3100),
+		],
 	});
 	const blockchain = new Blockchain();
 	const p2pServer = new P2PServer(blockchain);
@@ -21,11 +27,21 @@ async function initialize(): Promise<void> {
 	const app = express();
 
 	app.use(express.json());
+	app.use(cors());
 
 	app.get('/blocks', (req, res) => {
-		const chainDTO = BlockchainDTOConverter.fromBlockchainToBlockchainDTO(blockchain.getChain());
+		const chainDTO = BlockchainDTOConverter.fromBlockchainToBlockchainDTO(
+			blockchain.getChain()
+		);
 
-		res.json(chainDTO);
+		res.status(200).json(chainDTO);
+	});
+
+	app.get('/diplomas', (req, res) => {
+		const chainDTO = BlockchainDTOConverter.fromBlockchainToBlockchainDTO(blockchain.getChain());
+		const diplomasDTO = chainDTO.map(blockDTO => blockDTO.diploma);
+
+		res.status(200).json(diplomasDTO);
 	});
 
 	app.post('/add-diploma', (req, res) => {
@@ -36,7 +52,7 @@ async function initialize(): Promise<void> {
 			return;
 		}
 
-		const diploma = BlockchainDTOConverter.fromDiplomaDTOToDiploma(diplomaDTO);
+		const diploma = DiplomaConverter.fromDiplomaDTOToDiploma(diplomaDTO);
 
 		const previousBlock = blockchain.getLatestBlock();
 		const blockHeader = new BlockHeader(
@@ -49,7 +65,9 @@ async function initialize(): Promise<void> {
 
 		blockchain.addBlock(block);
 
-		const blockDTO = BlockchainDTOConverter.fromBlockToBlockDTO(blockchain.getLatestBlock());
+		const blockDTO = BlockchainDTOConverter.fromBlockToBlockDTO(
+			blockchain.getLatestBlock()
+		);
 
 		p2pServer.broadCastNewBlock(blockDTO);
 

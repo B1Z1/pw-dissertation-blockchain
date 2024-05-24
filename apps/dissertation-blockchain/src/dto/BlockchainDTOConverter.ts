@@ -1,7 +1,6 @@
 import { BlockDTO } from './BlockDTO';
 import { Block, BlockHeader } from '../blockchain/Block';
-import { DiplomaDTO } from './DiplomaDTO';
-import { Diploma } from '../blockchain/Diploma';
+import { DiplomaConverter, } from '@pw-dissertation-blockchain/features/diplomas';
 
 export class BlockchainDTOConverter {
 	static fromBlockchainDTOToBlockchain(dto: BlockDTO[]): Block[] {
@@ -14,26 +13,9 @@ export class BlockchainDTOConverter {
 			dto.timestamp,
 			dto.previousHash
 		);
-		const diploma = this.fromDiplomaDTOToDiploma(dto.diploma);
+		const diploma = DiplomaConverter.fromDiplomaDTOToDiploma(dto.diploma);
 
-		return new Block(
-			blockHeader,
-			diploma,
-			dto.hash
-		);
-	}
-
-	static fromDiplomaDTOToDiploma(dto: DiplomaDTO): Diploma {
-		return new Diploma(
-			dto.title,
-			dto.author,
-			dto.advisor,
-			dto.university,
-			dto.department,
-			dto.abstract,
-			dto.submissionDate,
-			dto.keywords
-		);
+		return new Block(blockHeader, diploma, dto.hash);
 	}
 
 	static fromBlockchainToBlockchainDTO(blockchain: Block[]): BlockDTO[] {
@@ -45,21 +27,8 @@ export class BlockchainDTOConverter {
 			block.getBlockHeader().getIndex(),
 			block.getBlockHeader().getTimestamp(),
 			block.getBlockHeader().getPreviousHash(),
-			this.fromDiplomaToDiplomaDTO(block.getDiplomaData()),
+			DiplomaConverter.fromDiplomaToDiplomaDTO(block.getDiplomaData()),
 			block.getHash()
-		);
-	}
-
-	static fromDiplomaToDiplomaDTO(diploma: Diploma): DiplomaDTO {
-		return new DiplomaDTO(
-			diploma.getTitle(),
-			diploma.getAuthor(),
-			diploma.getAdvisor(),
-			diploma.getUniversity(),
-			diploma.getDepartment(),
-			diploma.getAbstract(),
-			diploma.getSubmissionDate(),
-			diploma.getKeywords()
 		);
 	}
 }
