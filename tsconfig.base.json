@@ -14,7 +14,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@pw-dissertation-blockchain/ui-kit/ui": ["libs/ui-kit/ui/src/index.ts"],
+      "@pw-dissertation-blockchain/ui-kit/ui/*": ["libs/ui-kit/ui/src/*"],
+      "@pw-dissertation-blockchain/ui-kit/util": [
+        "libs/ui-kit/util/src/index.ts"
+      ],
+      "@pw-dissertation-blockchain/ui-kit/util/*": [
+        "libs/ui-kit/util/src/*"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
