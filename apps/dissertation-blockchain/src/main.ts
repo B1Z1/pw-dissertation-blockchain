@@ -1,9 +1,9 @@
-import { Blockchain } from './blockchain/Blockchain';
-import { P2PServer } from './p2p/P2PServer';
+import { blockchain } from './blockchain/Blockchain';
+import { p2pServer } from './p2p/P2PServer';
 import * as process from 'node:process';
 import getPort from 'get-port';
 import express from 'express';
-import { BlockchainDTOConverter } from './dto/BlockchainDTOConverter';
+import { BlockchainDTOConverter } from './blockchain/dto/BlockchainDTOConverter';
 import { Block, BlockHeader } from './blockchain/Block';
 import { DiplomaConverter, DiplomaDTO } from '@pw-dissertation-blockchain/features/diplomas';
 import cors from 'cors';
@@ -21,9 +21,6 @@ async function initialize(): Promise<void> {
 			...getPort.makeRange(3002, 3100),
 		],
 	});
-	const blockchain = new Blockchain();
-	const p2pServer = new P2PServer(blockchain);
-
 	const app = express();
 
 	app.use(express.json());

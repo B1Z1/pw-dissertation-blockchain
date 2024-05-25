@@ -1,15 +1,15 @@
-import { Blockchain } from '../blockchain/Blockchain';
+import { blockchain } from '../blockchain/Blockchain';
 import Swarm from 'discovery-swarm';
 import crypto from 'crypto';
 import defaults from 'dat-swarm-defaults';
 import { P2PMessageType } from './P2PMessageType';
 import { P2PMessage, P2PMessageBlockchain, P2PMessageNewBlock } from './P2PMessage';
-import { BlockchainDTOConverter } from '../dto/BlockchainDTOConverter';
+import { BlockchainDTOConverter } from '../blockchain/dto/BlockchainDTOConverter';
 import { Block } from '../blockchain/Block';
 import { P2PPeer } from './P2PPeer';
-import { BlockDTO } from '../dto/BlockDTO';
+import { BlockDTO } from '../blockchain/dto/BlockDTO';
 
-export class P2PServer {
+class P2PServer {
 	private readonly topic = 'diploma-blockchain';
 	private readonly peers: Map<string, P2PPeer> = new Map<string, P2PPeer>();
 	private readonly swarmConfig = defaults({
@@ -19,9 +19,7 @@ export class P2PServer {
 
 	private sequenceNumber = 0;
 
-	constructor(
-		private readonly blockchain: Blockchain
-	) {
+	constructor() {
 		this.initialize();
 	}
 
@@ -35,7 +33,7 @@ export class P2PServer {
 
 	sendChain(conn: any): void {
 		const blockchainDTO = BlockchainDTOConverter.fromBlockchainToBlockchainDTO(
-			this.blockchain.getChain()
+			blockchain.getChain()
 		);
 		const p2pMessage: P2PMessageBlockchain = {
 			type: P2PMessageType.BLOCKCHAIN,
@@ -86,15 +84,15 @@ export class P2PServer {
 
 			console.log('Received new block:', JSON.stringify(block));
 
-			this.blockchain.addBlock(block);
+			blockchain.addBlock(block);
 		}
 	}
 
-	private replaceChain(blockchain: Block[]): void {
-		const oldBlockchainLength = this.blockchain.getChain().length;
+	private replaceChain(chain: Block[]): void {
+		const oldChainCount = blockchain.getChain().length;
 
-		if (blockchain.length > oldBlockchainLength && this.isChainValid(blockchain)) {
-			this.blockchain.updateChain(blockchain);
+		if (chain.length > oldChainCount && this.isChainValid(chain)) {
+			blockchain.updateChain(chain);
 		}
 	}
 
@@ -152,3 +150,5 @@ export class P2PServer {
 		this.sequenceNumber++;
 	}
 }
+
+export const p2pServer = new P2PServer();

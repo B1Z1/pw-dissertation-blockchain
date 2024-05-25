@@ -1,5 +1,5 @@
 import { BlockDTO } from './BlockDTO';
-import { Block, BlockHeader } from '../blockchain/Block';
+import { Block, BlockHeader } from '../Block';
 import { DiplomaConverter, } from '@pw-dissertation-blockchain/features/diplomas';
 
 export class BlockchainDTOConverter {

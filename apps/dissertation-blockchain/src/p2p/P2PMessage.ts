@@ -1,5 +1,5 @@
 import { P2PMessageType } from './P2PMessageType';
-import { BlockDTO } from '../dto/BlockDTO';
+import { BlockDTO } from '../blockchain/dto/BlockDTO';
 
 export interface P2PMessageBlockchain {
 	type: P2PMessageType.BLOCKCHAIN;
