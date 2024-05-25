@@ -21,7 +21,6 @@ export type DiplomasTableProps = {
 
 export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 	const [globalFilter, setGlobalFilter] = useState('');
-	console.log(globalFilter);
 	const table = useReactTable<Diploma>({
 		data: diplomas,
 		columns: diplomaColumns,
