@@ -7,26 +7,6 @@ const KNOWN_ADDRESSES = [
 	'http://localhost:3003'
 ];
 
-const api = axios.create({
-	baseURL: KNOWN_ADDRESSES[0],
-	timeout: 10000
-});
-
-api.interceptors.response.use(null, async (error) => {
-	const originalRequest = error.config;
-
-	for (let i = 1; i < KNOWN_ADDRESSES.length; i++) {
-		try {
-			originalRequest.baseURL = KNOWN_ADDRESSES[i];
-			return await axios(originalRequest);
-		} catch (err) {
-			continue;
-		}
-	}
-
-	return Promise.reject(error);
-});
-
 export const useFetchQuery = <T>(
 	queryKey: string[],
 	url: string,
@@ -36,13 +16,19 @@ export const useFetchQuery = <T>(
 		...queryParams,
 		queryKey,
 		queryFn: async () => {
-			const response = await api.get(url);
+			for (const address of KNOWN_ADDRESSES) {
+				try {
+					const response = await axios.get<T>(`${address}${url}`);
 
-			if (response.status !== 200) {
-				throw new Error('Failed to fetch data');
+					if (response.status === 200) {
+						return response.data;
+					}
+				} catch (error) {
+					console.log(`Failed to fetch data from ${address}`);
+				}
 			}
 
-			return response.data;
+			throw new Error('Failed to fetch data');
 		},
 	});
 };
