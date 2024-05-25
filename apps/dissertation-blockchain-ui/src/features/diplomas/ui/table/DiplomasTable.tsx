@@ -1,5 +1,4 @@
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { useDiplomas } from '../../api/useDiplomas';
+import { flexRender, getCoreRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
 import { diplomaColumns } from '../../api/diplomaColumns';
 import { Diploma } from '@pw-dissertation-blockchain/features/diplomas';
 import {
@@ -11,63 +10,81 @@ import {
 	TableRow
 } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/table';
 import { cn } from '@pw-dissertation-blockchain/ui-kit/util';
+import { DiplomasTableToolbar } from './DiplomasTableToolbar';
+import { useState } from 'react';
+import { fuzzyFilter } from './diplomasTableFuzzyFilter';
 
 export type DiplomasTableProps = {
+	diplomas: Diploma[];
 	className?: string;
 };
 
-export const DiplomasTable = ({ className }: DiplomasTableProps) => {
-	const diplomas = useDiplomas();
+export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
+	const [globalFilter, setGlobalFilter] = useState('');
+	console.log(globalFilter);
 	const table = useReactTable<Diploma>({
 		data: diplomas,
 		columns: diplomaColumns,
-		getCoreRowModel: getCoreRowModel()
+		filterFns: {
+			fuzzy: fuzzyFilter
+		},
+		state: {
+			globalFilter
+		},
+		getCoreRowModel: getCoreRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		onGlobalFilterChange: setGlobalFilter,
+		globalFilterFn: 'fuzzy'
 	});
 
 	return (
-		<div className={cn(className, 'rounded-md', 'border')}>
-			<Table>
-				<TableHeader>
-					{table.getHeaderGroups().map((headerGroup) => (
-						<TableRow key={headerGroup.id}>
-							{headerGroup.headers.map((header) => {
-								return (
-									<TableHead key={header.id}>
-										{header.isPlaceholder
-											? null
-											: flexRender(
-												header.column.columnDef.header,
-												header.getContext()
-											)}
-									</TableHead>
-								);
-							})}
-						</TableRow>
-					))}
-				</TableHeader>
-				<TableBody>
-					{table.getRowModel().rows?.length ? (
-						table.getRowModel().rows.map((row) => (
-							<TableRow
-								key={row.id}
-								data-state={row.getIsSelected() && 'selected'}
-							>
-								{row.getVisibleCells().map((cell) => (
-									<TableCell key={cell.id}>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
-									</TableCell>
-								))}
+		<div className={cn(className, 'space-y-4', 'flex', 'flex-col')}>
+			<DiplomasTableToolbar onInputFilterChange={setGlobalFilter}/>
+
+			<div className="flex-1 rounded-md border">
+				<Table className="table-fixed">
+					<TableHeader>
+						{table.getHeaderGroups().map((headerGroup) => (
+							<TableRow key={headerGroup.id}>
+								{headerGroup.headers.map((header) => {
+									return (
+										<TableHead key={header.id}>
+											{header.isPlaceholder
+												? null
+												: flexRender(
+													header.column.columnDef.header,
+													header.getContext()
+												)}
+										</TableHead>
+									);
+								})}
 							</TableRow>
-						))
-					) : (
-						<TableRow>
-							<TableCell colSpan={diplomaColumns.length} className="h-24 text-center">
-								No results.
-							</TableCell>
-						</TableRow>
-					)}
-				</TableBody>
-			</Table>
+						))}
+					</TableHeader>
+					<TableBody>
+						{table.getRowModel().rows?.length ? (
+							table.getRowModel().rows.map((row) => (
+								<TableRow
+									key={row.id}
+									data-state={row.getIsSelected() && 'selected'}
+								>
+									{row.getVisibleCells().map((cell) => (
+										<TableCell key={cell.id}>
+											{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										</TableCell>
+									))}
+								</TableRow>
+							))
+						) : (
+							<TableRow>
+								<TableCell colSpan={diplomaColumns.length} className="h-full text-center">
+									No results.
+								</TableCell>
+							</TableRow>
+						)}
+					</TableBody>
+				</Table>
+			</div>
 		</div>
 	);
 };

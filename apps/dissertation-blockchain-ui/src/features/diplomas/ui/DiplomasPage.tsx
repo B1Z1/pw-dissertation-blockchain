@@ -1,6 +1,9 @@
 import { DiplomasTable } from './table/DiplomasTable';
+import { useDiplomas } from '../api/useDiplomas';
 
 export const DiplomasPage = () => {
+	const diplomas = useDiplomas();
+
 	return (
 		<div className="h-full flex flex-col">
 			<h2 className="text-2xl font-bold tracking-tight">
@@ -15,7 +18,8 @@ export const DiplomasPage = () => {
 				trudniejsze do usunięcia.
 			</p>
 
-			<DiplomasTable className="flex-1"/>
+			<DiplomasTable diplomas={diplomas}
+			               className="flex-1"/>
 		</div>
 	);
 };
