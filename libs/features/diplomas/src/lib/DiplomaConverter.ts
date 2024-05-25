@@ -1,4 +1,5 @@
-import { Diploma, DiplomaDTO } from '@pw-dissertation-blockchain/features/diplomas';
+import { DiplomaDTO } from './DiplomaDTO';
+import { Diploma } from './Diploma';
 
 export class DiplomaConverter {
 	static fromDiplomaDTOsToDiplomas(dtos: DiplomaDTO[]): Diploma[] {
@@ -13,7 +14,7 @@ export class DiplomaConverter {
 			dto.university,
 			dto.department,
 			dto.abstract,
-			dto.submissionDate,
+			new Date(dto.submissionDate).toISOString(),
 			dto.keywords
 		);
 	}

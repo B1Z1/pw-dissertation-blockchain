@@ -1,12 +1,12 @@
-import { blockchain } from './blockchain/Blockchain';
-import { p2pServer } from './p2p/P2PServer';
+import { blockchain } from './features/blockchain/Blockchain';
+import { p2pServer } from './features/p2p/P2PServer';
 import * as process from 'node:process';
 import getPort from 'get-port';
 import express from 'express';
-import { BlockchainDTOConverter } from './blockchain/dto/BlockchainDTOConverter';
-import { Block, BlockHeader } from './blockchain/Block';
+import { BlockchainDTOConverter } from './features/blockchain/dto/BlockchainDTOConverter';
 import { DiplomaConverter, DiplomaDTO } from '@pw-dissertation-blockchain/features/diplomas';
 import cors from 'cors';
+import { mockDiplomas } from './features/generator/mockDiplomas';
 
 async function initialize(): Promise<void> {
 	const p2pPort = await getPort({
@@ -41,6 +41,14 @@ async function initialize(): Promise<void> {
 		res.status(200).json(diplomasDTO);
 	});
 
+	app.post('/generate-mock-diplomas', (req, res) => {
+		for (const mockDiploma of mockDiplomas) {
+			blockchain.createBlock(mockDiploma);
+		}
+
+		res.redirect('/blocks');
+	});
+
 	app.post('/add-diploma', (req, res) => {
 		const diplomaDTO: DiplomaDTO | undefined = req.body;
 
@@ -51,16 +59,7 @@ async function initialize(): Promise<void> {
 
 		const diploma = DiplomaConverter.fromDiplomaDTOToDiploma(diplomaDTO);
 
-		const previousBlock = blockchain.getLatestBlock();
-		const blockHeader = new BlockHeader(
-			previousBlock.getBlockHeader().getIndex() + 1,
-			new Date().getTime(),
-			previousBlock.getHash()
-		);
-
-		const block = new Block(blockHeader, diploma);
-
-		blockchain.addBlock(block);
+		blockchain.createBlock(diploma);
 
 		const blockDTO = BlockchainDTOConverter.fromBlockToBlockDTO(
 			blockchain.getLatestBlock()
