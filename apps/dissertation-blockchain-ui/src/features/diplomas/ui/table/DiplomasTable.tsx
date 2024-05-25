@@ -1,5 +1,11 @@
-import { flexRender, getCoreRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table';
-import { diplomaColumns } from '../../api/diplomaColumns';
+import {
+	flexRender,
+	getCoreRowModel,
+	getFilteredRowModel,
+	getSortedRowModel,
+	useReactTable
+} from '@tanstack/react-table';
+import { diplomaColumns } from './diplomaColumns';
 import { Diploma } from '@pw-dissertation-blockchain/features/diplomas';
 import {
 	Table,
@@ -10,7 +16,7 @@ import {
 	TableRow
 } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/table';
 import { cn } from '@pw-dissertation-blockchain/ui-kit/util';
-import { DiplomasTableToolbar } from './DiplomasTableToolbar';
+import { DiplomasTableToolbar } from './toolbar/DiplomasTableToolbar';
 import { useState } from 'react';
 import { fuzzyFilter } from './diplomasTableFuzzyFilter';
 
@@ -32,6 +38,7 @@ export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 		},
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
+		getSortedRowModel: getSortedRowModel(),
 		onGlobalFilterChange: setGlobalFilter,
 		globalFilterFn: 'fuzzy'
 	});
