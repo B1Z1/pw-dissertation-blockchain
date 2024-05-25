@@ -10,7 +10,7 @@ export const DiplomasPage = () => {
 				Witam w wyszukiwarce prac dyplomowych!
 			</h2>
 
-			<p className="w-1/3 mb-4 text-muted-foreground">
+			<p className="w-1/3 text-muted-foreground">
 				Baza danych zawiera prace dyplomowe z różnych kierunków studiów oraz różnych uczelni.
 				Warto wspomnieć, że baza danych jest zdecentralizowana, co oznacza, że nie ma jednego
 				centralnego serwera, który przechowuje wszystkie prace dyplomowe. Zamiast tego, prace
@@ -19,7 +19,7 @@ export const DiplomasPage = () => {
 			</p>
 
 			<DiplomasTable diplomas={diplomas}
-			               className="flex-1"/>
+			               className="flex-1 min-h-0 pt-4"/>
 		</div>
 	);
 };

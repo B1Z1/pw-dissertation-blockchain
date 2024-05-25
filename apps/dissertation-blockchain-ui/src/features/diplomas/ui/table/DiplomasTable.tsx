@@ -19,6 +19,7 @@ import { cn } from '@pw-dissertation-blockchain/ui-kit/util';
 import { DiplomasTableToolbar } from './toolbar/DiplomasTableToolbar';
 import { useState } from 'react';
 import { fuzzyFilter } from './diplomasTableFuzzyFilter';
+import { DiplomasTableStyled } from './DiplomasTable.styled';
 
 export type DiplomasTableProps = {
 	diplomas: Diploma[];
@@ -47,9 +48,9 @@ export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 		<div className={cn(className, 'space-y-4', 'flex', 'flex-col')}>
 			<DiplomasTableToolbar onInputFilterChange={setGlobalFilter}/>
 
-			<div className="flex-1 rounded-md border">
+			<DiplomasTableStyled className="relative flex-1 min-h-0 rounded-md border">
 				<Table className="table-fixed">
-					<TableHeader>
+					<TableHeader className="sticky top-0 bg-background">
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
@@ -90,7 +91,7 @@ export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 						)}
 					</TableBody>
 				</Table>
-			</div>
+			</DiplomasTableStyled>
 		</div>
 	);
 };
