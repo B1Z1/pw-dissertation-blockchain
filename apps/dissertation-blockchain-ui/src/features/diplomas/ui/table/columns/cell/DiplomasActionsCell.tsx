@@ -12,6 +12,10 @@ import {
 import { Button } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/button';
 import { Badge } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/badge';
 import { Separator } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/separator';
+import { Input } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/input';
+import { fileToSha256 } from '../../../../../../shared/util/file-to-sha/fileToSha256';
+import { Label } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/label';
+import { toast } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/use-toast';
 
 export type DiplomasActionsCellProps = {
 	diploma: Diploma;
@@ -20,6 +24,20 @@ export type DiplomasActionsCellProps = {
 export const DiplomasActionsCell = ({ diploma }: DiplomasActionsCellProps) => {
 	const submissionDate = new Date(diploma.getSubmissionDateTime());
 	const formattedSubmissionDate = submissionDate.toLocaleDateString();
+
+	const onChange = async (event: any) => {
+		const file = event.target.files[0];
+		const fileHash = await fileToSha256(file);
+		const description = fileHash === diploma.getFileHash()
+			? 'Praca dyplomowa jest poprawna'
+			: 'Praca dyplomowa jest niepoprawna';
+
+		toast({
+			title: 'Walidacja pracy dyplomowej',
+			description: description,
+			duration: 5000
+		});
+	};
 
 	return (
 		<div className="flex justify-end">
@@ -73,7 +91,7 @@ export const DiplomasActionsCell = ({ diploma }: DiplomasActionsCellProps) => {
 							</span>
 						</p>
 
-						<div className="flex gap-1">
+						<div className="flex gap-1 mb-4">
 							{diploma.getKeywords().map((keyword, index) => (
 								<Badge key={index}
 								       variant="outline">
@@ -81,6 +99,17 @@ export const DiplomasActionsCell = ({ diploma }: DiplomasActionsCellProps) => {
 								</Badge>
 							))}
 						</div>
+
+						<Label>
+							<span className="inline-block mb-2">
+								Walidacja pracy dyplomowej
+							</span>
+
+							<Input type="file"
+							       className="w-[240px]"
+							       accept="application/pdf"
+							       onChange={onChange}/>
+						</Label>
 					</div>
 
 					<DialogFooter>
