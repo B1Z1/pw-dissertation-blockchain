@@ -11,6 +11,7 @@ import {
 } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/dialog';
 import { Button } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/button';
 import { Badge } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/badge';
+import { Separator } from '@pw-dissertation-blockchain/ui-kit/ui/lib/ui/separator';
 
 export type DiplomasActionsCellProps = {
 	diploma: Diploma;
@@ -53,9 +54,11 @@ export const DiplomasActionsCell = ({ diploma }: DiplomasActionsCellProps) => {
 							Opiekun: <span className="font-bold">{diploma.getAdvisor()}</span>
 						</p>
 
-						<h3 className="mb-4">
+						<h3 className="mb-2">
 							{diploma.getTitle()}
 						</h3>
+
+						<Separator className="mb-2"/>
 
 						<p className="mb-8 text-muted-foreground text-pretty">
 							{diploma.getAbstract()}
