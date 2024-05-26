@@ -10,7 +10,7 @@ export const DiplomasPage = () => {
 				Witam w wyszukiwarce prac dyplomowych!
 			</h2>
 
-			<p className="w-1/3 text-muted-foreground">
+			<p className="w-full xl:w-1/2 text-muted-foreground text-pretty">
 				Baza danych zawiera prace dyplomowe z różnych kierunków studiów oraz różnych uczelni.
 				Warto wspomnieć, że baza danych jest zdecentralizowana, co oznacza, że nie ma jednego
 				centralnego serwera, który przechowuje wszystkie prace dyplomowe. Zamiast tego, prace

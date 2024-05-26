@@ -85,8 +85,9 @@ export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={diplomasColumns.length} className="h-full text-center">
-									No results.
+								<TableCell colSpan={diplomasColumns.length}
+								           className="h-full text-center">
+									Nie ma takiej pracy dyplomowej
 								</TableCell>
 							</TableRow>
 						)}

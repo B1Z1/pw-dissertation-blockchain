@@ -3,6 +3,7 @@ import { Diploma } from '@pw-dissertation-blockchain/features/diplomas';
 import { DiplomasHeaderCell } from './header-cell/DiplomasHeaderCell';
 import { DiplomasKeywordsCell } from './cell/DiplomasKeywordsCell';
 import { DiplomasCell } from './cell/DiplomasCell';
+import { DiplomasActionsCell } from './cell/DiplomasActionsCell';
 
 export const diplomasColumns: ColumnDef<Diploma>[] = [
 	{
@@ -45,7 +46,7 @@ export const diplomasColumns: ColumnDef<Diploma>[] = [
 		accessorKey: 'advisor',
 		header: ({ column }) => {
 			return (
-				<DiplomasHeaderCell text="Promotor"
+				<DiplomasHeaderCell text="Opiekun"
 				                    isSortable={true}
 				                    column={column}/>
 			);
@@ -114,6 +115,24 @@ export const diplomasColumns: ColumnDef<Diploma>[] = [
 		}
 	},
 	{
+		accessorKey: 'submissionDate',
+		header: ({ column }) => {
+			return (
+				<DiplomasHeaderCell text="Data oddania"
+				                    isSortable={true}
+				                    column={column}/>
+			);
+		},
+		cell: ({ cell }) => {
+			const date = cell.getValue<string>();
+			const formattedDate = new Date(date);
+
+			return (
+				<DiplomasCell text={formattedDate.toLocaleDateString()}/>
+			);
+		}
+	},
+	{
 		accessorKey: 'keywords',
 		header: ({ column }) => {
 			return (
@@ -127,6 +146,17 @@ export const diplomasColumns: ColumnDef<Diploma>[] = [
 
 			return (
 				<DiplomasKeywordsCell keywords={keywords}/>
+			);
+		}
+	},
+	{
+		accessorKey: 'actionButtons',
+		header: undefined,
+		cell: ({ cell }) => {
+			const diploma = cell.row.original;
+
+			return (
+				<DiplomasActionsCell diploma={diploma}/>
 			);
 		}
 	}

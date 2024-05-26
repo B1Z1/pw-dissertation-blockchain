@@ -8,7 +8,8 @@ export const DiplomasTableToolbar = ({ onInputFilterChange }: DiplomasTableToolb
 	return (
 		<div className="flex items-center justify-between">
 			<Input
-				placeholder="Filtr prac dyplomowych..."
+				type="search"
+				placeholder="Wyszukaj pracę..."
 				onChange={(event) => onInputFilterChange(event.target.value)}
 				className="h-8 w-[150px] lg:w-[250px]"
 			/>
