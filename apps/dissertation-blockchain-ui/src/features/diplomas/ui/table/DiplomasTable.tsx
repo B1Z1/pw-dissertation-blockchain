@@ -5,7 +5,7 @@ import {
 	getSortedRowModel,
 	useReactTable
 } from '@tanstack/react-table';
-import { diplomaColumns } from './diplomaColumns';
+import { diplomasColumns } from './columns/diplomasColumns';
 import { Diploma } from '@pw-dissertation-blockchain/features/diplomas';
 import {
 	Table,
@@ -30,7 +30,7 @@ export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 	const [globalFilter, setGlobalFilter] = useState('');
 	const table = useReactTable<Diploma>({
 		data: diplomas,
-		columns: diplomaColumns,
+		columns: diplomasColumns,
 		filterFns: {
 			fuzzy: fuzzyFilter
 		},
@@ -76,7 +76,8 @@ export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 									data-state={row.getIsSelected() && 'selected'}
 								>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>
+										<TableCell key={cell.id}
+										           className="truncate">
 											{flexRender(cell.column.columnDef.cell, cell.getContext())}
 										</TableCell>
 									))}
@@ -84,7 +85,7 @@ export const DiplomasTable = ({ className, diplomas }: DiplomasTableProps) => {
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={diplomaColumns.length} className="h-full text-center">
+								<TableCell colSpan={diplomasColumns.length} className="h-full text-center">
 									No results.
 								</TableCell>
 							</TableRow>
