@@ -18,6 +18,7 @@ import { DiplomasTableToolbarAddForm } from './DiplomasTableToolbarAddForm';
 import { useState } from 'react';
 import { useAddDiploma } from '../../../api/useAddDiploma';
 import { DiplomaDTO } from '@pw-dissertation-blockchain/features/diplomas';
+import { fileToSha256 } from '../../../../../shared/util/file-to-sha/fileToSha256';
 
 export type DiplomasTableToolbarProps = {
 	onInputFilterChange: (value: string) => void;
@@ -41,6 +42,7 @@ export const DiplomasTableToolbar = ({ onInputFilterChange }: DiplomasTableToolb
 	});
 
 	const onSubmit = async (values: z.infer<typeof diplomasAddFormSchema>) => {
+		const fileHash = await fileToSha256(values.file);
 		const diplomaDTO: DiplomaDTO = {
 			title: values.title,
 			author: values.author,
@@ -49,7 +51,8 @@ export const DiplomasTableToolbar = ({ onInputFilterChange }: DiplomasTableToolb
 			department: values.department,
 			abstract: values.abstract,
 			submissionDateTime: values.submissionDateTime.getTime(),
-			keywords: values.keywords.split(' ')
+			keywords: values.keywords.split(' '),
+			fileHash: fileHash
 		};
 
 		await addDiploma(diplomaDTO);

@@ -7,7 +7,8 @@ export class Diploma {
 		private readonly department: string,
 		private readonly abstract: string,
 		private readonly submissionDateTime: number,
-		private readonly keywords: string[]
+		private readonly keywords: string[],
+		private readonly fileHash: string
 	) {
 	}
 
@@ -41,5 +42,9 @@ export class Diploma {
 
 	getKeywords(): string[] {
 		return this.keywords;
+	}
+
+	getFileHash(): string {
+		return this.fileHash;
 	}
 }

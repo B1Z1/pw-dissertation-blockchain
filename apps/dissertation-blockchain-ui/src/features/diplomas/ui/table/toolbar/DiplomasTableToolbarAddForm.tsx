@@ -25,6 +25,7 @@ export type DiplomasTableToolbarAddFormProps = {
 	className?: string;
 };
 
+
 export const DiplomasTableToolbarAddForm = ({ form, onSubmit, className }: DiplomasTableToolbarAddFormProps) => {
 	return (
 		<Form {...form}>
@@ -219,6 +220,35 @@ export const DiplomasTableToolbarAddForm = ({ form, onSubmit, className }: Diplo
 				           }}
 				/>
 
+				<FormField control={form.control}
+				           name="file"
+				           render={({ field }) => {
+					           return (
+						           <FormItem>
+							           <FormLabel>
+								           Plik Pracy (.pdf)
+							           </FormLabel>
+
+							           <FormControl>
+								           <Input type="file"
+								                  accept="application/pdf"
+								                  onChange={event => {
+									                  const files = event.target.files;
+
+									                  if (!files || files.length === 0) {
+										                  return;
+									                  }
+
+									                  field.onChange(files[0]);
+								                  }}
+								           />
+							           </FormControl>
+
+							           <FormMessage/>
+						           </FormItem>
+					           );
+				           }}
+				/>
 			</form>
 		</Form>
 	);

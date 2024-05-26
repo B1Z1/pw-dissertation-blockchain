@@ -42,7 +42,8 @@ class Blockchain {
 			'Genesis Departament',
 			'Genesis Abstract',
 			new Date('2021-01-01').getTime(),
-			['Genesis Keyword']
+			['Genesis Keyword'],
+			'Genesis File Hash'
 		);
 
 		return new Block(blockHeader, diplomaData);

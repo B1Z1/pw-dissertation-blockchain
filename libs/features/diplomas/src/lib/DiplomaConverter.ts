@@ -15,7 +15,8 @@ export class DiplomaConverter {
 			dto.department,
 			dto.abstract,
 			Number(dto.submissionDateTime),
-			dto.keywords
+			dto.keywords,
+			dto.fileHash
 		);
 	}
 
@@ -28,7 +29,8 @@ export class DiplomaConverter {
 			diploma.getDepartment(),
 			diploma.getAbstract(),
 			diploma.getSubmissionDateTime(),
-			diploma.getKeywords()
+			diploma.getKeywords(),
+			diploma.getFileHash()
 		);
 	}
 }

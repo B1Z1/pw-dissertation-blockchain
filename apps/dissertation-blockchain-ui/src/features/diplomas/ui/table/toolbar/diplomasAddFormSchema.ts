@@ -16,5 +16,6 @@ export const diplomasAddFormSchema = z.object({
 		.max(1000, { message: 'Streszczenie pracy nie może być dłuższe niż 1000 znaków' }),
 	submissionDateTime: z.date(),
 	keywords: z.string()
-		.min(1, { message: 'Słowa kluczowe są wymagane' })
+		.min(1, { message: 'Słowa kluczowe są wymagane' }),
+	file: z.instanceof(File)
 });

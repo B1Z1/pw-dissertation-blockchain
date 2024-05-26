@@ -7,7 +7,8 @@ export class DiplomaDTO {
 		readonly department: string,
 		readonly abstract: string,
 		readonly submissionDateTime: number,
-		readonly keywords: string[]
+		readonly keywords: string[],
+		readonly fileHash: string
 	) {
 	}
 }
