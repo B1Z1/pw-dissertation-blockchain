@@ -8,7 +8,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Warszawska',
 		'Informatyka',
 		'Praca omawia różne techniki uczenia maszynowego stosowane w analizie predykcyjnej, w tym regresję, klasyfikację i grupowanie.',
-		'2023-05-01',
+		new Date('2023-04-30').getTime(),
 		['Uczenie maszynowe', 'Analiza predykcyjna', 'Data Science']
 	),
 	new Diploma(
@@ -18,7 +18,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Jagielloński',
 		'Inżynieria elektryczna',
 		'Praca skupia się na integracji źródeł energii odnawialnej z istniejącymi sieciami elektroenergetycznymi i związanych z tym wyzwaniach.',
-		'2023-06-15',
+		new Date('2023-06-15').getTime(),
 		['Energia odnawialna', 'Sieć elektroenergetyczna', 'Inżynieria elektryczna']
 	),
 	new Diploma(
@@ -28,7 +28,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Warszawski',
 		'Fizyka',
 		'Praca bada najnowsze postępy w obliczeniach kwantowych i ich potencjalne zastosowania.',
-		'2023-07-10',
+		new Date('2023-07-10').getTime(),
 		['Obliczenia kwantowe', 'Fizyka', 'Technologia']
 	),
 	new Diploma(
@@ -38,7 +38,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Medyczny w Łodzi',
 		'Inżynieria biomedyczna',
 		'Praca analizuje zastosowanie sztucznej inteligencji w ochronie zdrowia, koncentrując się na jej korzyściach i potencjalnych wyzwaniach.',
-		'2023-05-20',
+		new Date('2023-05-20').getTime(),
 		['Sztuczna inteligencja', 'Ochrona zdrowia', 'Inżynieria biomedyczna']
 	),
 	new Diploma(
@@ -48,7 +48,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Przyrodniczy w Poznaniu',
 		'Nauki o środowisku',
 		'Praca analizuje wpływ zmian klimatycznych na rolnictwo globalne i proponuje zrównoważone rozwiązania.',
-		'2023-08-05',
+		new Date('2023-08-05').getTime(),
 		['Zmiany klimatyczne', 'Rolnictwo', 'Nauki o środowisku']
 	),
 	new Diploma(
@@ -58,7 +58,7 @@ export const mockDiplomas: Diploma[] = [
 		'SGH Warszawa',
 		'Finanse',
 		'Praca omawia technologię blockchain i jej różnorodne zastosowania w sektorze finansowym.',
-		'2023-09-10',
+		new Date('2023-09-10').getTime(),
 		['Blockchain', 'Finanse', 'Technologia']
 	),
 	new Diploma(
@@ -68,7 +68,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Wrocławska',
 		'Automatyka i Robotyka',
 		'Praca analizuje rolę robotyki w przemyśle 4.0, w tym automatyzację procesów produkcyjnych.',
-		'2023-10-01',
+		new Date('2023-10-01').getTime(),
 		['Robotyka', 'Przemysł 4.0', 'Automatyzacja']
 	),
 	new Diploma(
@@ -78,7 +78,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Ekonomiczny w Krakowie',
 		'Ekonomia',
 		'Praca bada wpływ pandemii COVID-19 na gospodarki światowe i społeczności lokalne.',
-		'2023-04-15',
+		new Date('2023-04-15').getTime(),
 		['COVID-19', 'Ekonomia', 'Społeczność']
 	),
 	new Diploma(
@@ -88,7 +88,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Gdańska',
 		'Zarządzanie',
 		'Praca omawia zastosowanie technik big data w analizie rynku, w tym analizy popytu i podaży.',
-		'2023-03-25',
+		new Date('2023-03-25').getTime(),
 		['Big Data', 'Analiza rynku', 'Zarządzanie']
 	),
 	new Diploma(
@@ -98,7 +98,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Poznańska',
 		'Informatyka',
 		'Praca analizuje zagrożenia związane z bezpieczeństwem w sieciach komputerowych i proponuje środki ochrony.',
-		'2023-07-20',
+		new Date('2023-07-20').getTime(),
 		['Bezpieczeństwo', 'Sieci komputerowe', 'Informatyka']
 	),
 	new Diploma(
@@ -108,7 +108,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Śląska',
 		'Inżynieria mechaniczna',
 		'Praca bada rozwój technologii samochodów autonomicznych i ich wpływ na przyszłość transportu.',
-		'2023-05-30',
+		new Date('2023-05-30').getTime(),
 		['Samochody autonomiczne', 'Transport', 'Inżynieria mechaniczna']
 	),
 	new Diploma(
@@ -118,7 +118,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Medyczny w Białymstoku',
 		'Biotechnologia',
 		'Praca analizuje najnowsze metody stosowane w terapii genowej i ich potencjalne zastosowania kliniczne.',
-		'2023-06-25',
+		new Date('2023-06-25').getTime(),
 		['Terapia genowa', 'Biotechnologia', 'Medycyna']
 	),
 	new Diploma(
@@ -128,7 +128,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Przyrodniczy we Wrocławiu',
 		'Nauki o środowisku',
 		'Praca bada zastosowanie dronów w monitoringu środowiskowym, w tym w ocenie jakości powietrza i wody.',
-		'2023-07-05',
+		new Date('2023-07-05').getTime(),
 		['Drony', 'Monitoring środowiskowy', 'Nauki o środowisku']
 	),
 	new Diploma(
@@ -138,7 +138,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Łódzka',
 		'Inżynieria lądowa',
 		'Praca analizuje rozwój inteligentnych systemów transportowych i ich rolę w miastach przyszłości.',
-		'2023-08-15',
+		new Date('2023-08-15').getTime(),
 		['Inteligentne systemy', 'Transport', 'Inżynieria lądowa']
 	),
 	new Diploma(
@@ -148,7 +148,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Gdański',
 		'Ekonomia',
 		'Praca bada trendy na rynku nieruchomości w Polsce i proponuje prognozy na przyszłość.',
-		'2023-09-20',
+		new Date('2023-09-20').getTime(),
 		['Rynek nieruchomości', 'Ekonomia', 'Polska']
 	),
 	new Diploma(
@@ -158,7 +158,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Wrocławski',
 		'Pedagogika',
 		'Praca analizuje zastosowanie technologii wirtualnej rzeczywistości w procesie edukacyjnym i jej wpływ na efektywność nauczania.',
-		'2023-06-10',
+		new Date('2023-06-10').getTime(),
 		['VR', 'Edukacja', 'Technologia']
 	),
 	new Diploma(
@@ -168,7 +168,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Krakowska',
 		'Informatyka',
 		'Praca bada rozwój aplikacji mobilnych z wykorzystaniem sztucznej inteligencji, w tym analizy obrazów i rozpoznawania mowy.',
-		'2023-05-18',
+		new Date('2023-05-18').getTime(),
 		['Aplikacje mobilne', 'Sztuczna inteligencja', 'Informatyka']
 	),
 	new Diploma(
@@ -178,7 +178,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Warszawski',
 		'Marketing',
 		'Praca analizuje wpływ mediów społecznościowych na decyzje zakupowe konsumentów i strategie marketingowe.',
-		'2023-07-12',
+		new Date('2023-07-12').getTime(),
 		['Media społecznościowe', 'Zachowania konsumentów', 'Marketing']
 	),
 	new Diploma(
@@ -188,7 +188,7 @@ export const mockDiplomas: Diploma[] = [
 		'Uniwersytet Medyczny w Lublinie',
 		'Medycyna',
 		'Praca bada zastosowanie sztucznej inteligencji w diagnostyce medycznej, w tym w analizie obrazów medycznych i diagnozowaniu chorób.',
-		'2023-06-22',
+		new Date('2023-06-22').getTime(),
 		['Sztuczna inteligencja', 'Diagnostyka medyczna', 'Medycyna']
 	),
 	new Diploma(
@@ -198,7 +198,7 @@ export const mockDiplomas: Diploma[] = [
 		'Politechnika Rzeszowska',
 		'Architektura',
 		'Praca analizuje wyzwania związane ze zrównoważonym rozwojem miast oraz przedstawia możliwe perspektywy na przyszłość.',
-		'2023-08-28',
+		new Date('2023-08-28').getTime(),
 		['Zrównoważony rozwój', 'Miasta', 'Architektura']
 	)
 ];

@@ -10,7 +10,7 @@ const KNOWN_ADDRESSES = [
 export const useFetchQuery = <T>(
 	queryKey: string[],
 	url: string,
-	queryParams: Omit<UseQueryOptions<T>, 'queryKey'> = {}
+	queryParams: Omit<UseQueryOptions<T>, 'queryKey' | 'queryFn'> = {}
 ): UseQueryResult<T> => {
 	return useQuery<T>({
 		...queryParams,

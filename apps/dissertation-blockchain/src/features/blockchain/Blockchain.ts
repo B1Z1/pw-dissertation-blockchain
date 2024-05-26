@@ -41,7 +41,7 @@ class Blockchain {
 			'Genesis University',
 			'Genesis Departament',
 			'Genesis Abstract',
-			new Date('2021-01-01').toISOString(),
+			new Date('2021-01-01').getTime(),
 			['Genesis Keyword']
 		);
 

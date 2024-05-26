@@ -115,7 +115,7 @@ export const diplomasColumns: ColumnDef<Diploma>[] = [
 		}
 	},
 	{
-		accessorKey: 'submissionDate',
+		accessorKey: 'submissionDateTime',
 		header: ({ column }) => {
 			return (
 				<DiplomasHeaderCell text="Data oddania"
@@ -124,7 +124,7 @@ export const diplomasColumns: ColumnDef<Diploma>[] = [
 			);
 		},
 		cell: ({ cell }) => {
-			const date = cell.getValue<string>();
+			const date = cell.getValue<number>();
 			const formattedDate = new Date(date);
 
 			return (

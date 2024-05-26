@@ -6,7 +6,7 @@ export class Diploma {
 		private readonly university: string,
 		private readonly department: string,
 		private readonly abstract: string,
-		private readonly submissionDate: string,
+		private readonly submissionDateTime: number,
 		private readonly keywords: string[]
 	) {
 	}
@@ -35,8 +35,8 @@ export class Diploma {
 		return this.abstract;
 	}
 
-	getSubmissionDate(): string {
-		return this.submissionDate;
+	getSubmissionDateTime(): number {
+		return this.submissionDateTime;
 	}
 
 	getKeywords(): string[] {

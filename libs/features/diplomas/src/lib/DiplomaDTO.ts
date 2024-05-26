@@ -6,7 +6,7 @@ export class DiplomaDTO {
 		readonly university: string,
 		readonly department: string,
 		readonly abstract: string,
-		readonly submissionDate: string,
+		readonly submissionDateTime: number,
 		readonly keywords: string[]
 	) {
 	}

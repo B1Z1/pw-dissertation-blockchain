@@ -18,13 +18,13 @@ export type DiplomasActionsCellProps = {
 }
 
 export const DiplomasActionsCell = ({ diploma }: DiplomasActionsCellProps) => {
-	const submissionDate = new Date(diploma.getSubmissionDate());
+	const submissionDate = new Date(diploma.getSubmissionDateTime());
 	const formattedSubmissionDate = submissionDate.toLocaleDateString();
 
 	return (
 		<div className="flex justify-end">
 			<Dialog>
-				<DialogTrigger>
+				<DialogTrigger asChild>
 					<Button variant="outline"
 					        size="sm">
 						Pokaż szczegóły

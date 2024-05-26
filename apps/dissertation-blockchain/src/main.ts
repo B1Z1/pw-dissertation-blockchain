@@ -67,7 +67,7 @@ async function initialize(): Promise<void> {
 
 		p2pServer.broadCastNewBlock(blockDTO);
 
-		res.redirect('/blocks');
+		res.status(200).send('Diploma added to the blockchain');
 	});
 
 	app.get('/peers', (req, res) => {

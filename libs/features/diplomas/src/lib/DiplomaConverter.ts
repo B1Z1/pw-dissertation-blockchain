@@ -14,7 +14,7 @@ export class DiplomaConverter {
 			dto.university,
 			dto.department,
 			dto.abstract,
-			new Date(dto.submissionDate).toISOString(),
+			Number(dto.submissionDateTime),
 			dto.keywords
 		);
 	}
@@ -27,7 +27,7 @@ export class DiplomaConverter {
 			diploma.getUniversity(),
 			diploma.getDepartment(),
 			diploma.getAbstract(),
-			diploma.getSubmissionDate(),
+			diploma.getSubmissionDateTime(),
 			diploma.getKeywords()
 		);
 	}
