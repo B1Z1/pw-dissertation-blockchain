@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start:backend": "yarn nx run dissertation-blockchain:serve",
-    "start:ui": "yarn nx run dissertation-blockchain-ui:serve"
+    "start:ui": "yarn nx run dissertation-blockchain-ui:serve",
+    "build:backend": "yarn nx run dissertation-blockchain:build",
+    "build:ui": "yarn nx run dissertation-blockchain-ui:build"
   },
   "private": true,
   "dependencies": {
